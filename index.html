@@ -1,0 +1,1900 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sumangal Sandeep Tengse | CSE Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                bg: "#0b0f19",
+                card: "#131b2e",
+                cardBorder: "rgba(0, 243, 255, 0.15)",
+                cyan: "#00f3ff",
+                purple: "#9d4edd",
+                pink: "#f72585",
+                dark: "#070a12",
+                text: "#e2e8f0",
+                dimText: "#94a3b8",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["Fira Code", "monospace"],
+            },
+            boxShadow: {
+              "neon-cyan": "0 0 20px rgba(0, 243, 255, 0.35)",
+              "neon-purple": "0 0 20px rgba(157, 78, 221, 0.35)",
+              "neon-pink": "0 0 20px rgba(247, 37, 133, 0.35)",
+            },
+            animation: {
+              "pulse-glow": "pulseGlow 3s infinite alternate",
+              float: "float 6s ease-in-out infinite",
+            },
+            keyframes: {
+              pulseGlow: {
+                "0%": { boxShadow: "0 0 10px rgba(0, 243, 255, 0.2)" },
+                "100%": {
+                  boxShadow:
+                    "0 0 25px rgba(0, 243, 255, 0.6), 0 0 10px rgba(157, 78, 221, 0.4)",
+                },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #0b0f19;
+        color: #e2e8f0;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Glassmorphic elements */
+      .glass-panel {
+        background: rgba(19, 27, 46, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 243, 255, 0.15);
+      }
+
+      .glass-panel-hover:hover {
+        border-color: rgba(0, 243, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+      }
+
+      /* Glowing text gradient */
+      .text-gradient-cyan {
+        background: linear-gradient(135deg, #00f3ff 0%, #9d4edd 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .text-gradient-purple {
+        background: linear-gradient(135deg, #9d4edd 0%, #f72585 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #070a12;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 243, 255, 0.2);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00f3ff;
+      }
+
+      /* Canvas Overlay */
+      #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Pulse Dot */
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #00f3ff;
+        box-shadow: 0 0 10px #00f3ff;
+        animation: pulseDot 1.5s infinite;
+      }
+
+      @keyframes pulseDot {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(0, 243, 255, 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(0, 243, 255, 0);
+        }
+      }
+
+      /* Glowing card border gradient */
+      .cyber-border {
+        position: relative;
+      }
+      .cyber-border::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(45deg, #00f3ff, transparent, #9d4edd);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0.3;
+        transition: opacity 0.3s ease;
+      }
+      .cyber-border:hover::before {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="relative">
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="fixed top-0 left-0 w-full z-50 px-4 py-3">
+      <div
+        class="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg"
+      >
+        <!-- Brand Logo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyber-cyan to-cyber-purple p-[1px] flex items-center justify-center shadow-neon-cyan transition-transform group-hover:scale-105"
+          >
+            <div
+              class="w-full h-full bg-cyber-bg rounded-[11px] flex items-center justify-center font-mono font-bold text-cyber-cyan"
+            >
+              ST
+            </div>
+          </div>
+          <div>
+            <span
+              class="font-bold text-lg tracking-wider text-white group-hover:text-cyber-cyan transition-colors"
+              >SUMANGAL</span
+            >
+            <span
+              class="text-xs text-cyber-cyan font-mono block -mt-1 tracking-widest"
+              >CSE_PORTFOLIO</span
+            >
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-mono">
+          <a
+            href="#about"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> About</a
+          >
+          <a
+            href="#skills"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> Skills</a
+          >
+          <a
+            href="#projects"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> Projects</a
+          >
+          <a
+            href="#interactive"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> Playground</a
+          >
+          <a
+            href="#terminal"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> Terminal</a
+          >
+          <a
+            href="#contact"
+            class="text-cyber-dimText hover:text-cyber-cyan transition-colors flex items-center gap-1.5"
+            ><span class="text-cyber-cyan">//</span> Contact</a
+          >
+        </nav>
+
+        <!-- Quick Action Button -->
+        <div class="flex items-center gap-3">
+          <a
+            href="#contact"
+            class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-mono font-bold bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30 hover:bg-cyber-cyan hover:text-cyber-bg transition-all duration-300 shadow-neon-cyan"
+          >
+            <i class="fa-solid fa-paper-plane mr-2"></i> GET IN TOUCH
+          </a>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden text-cyber-cyan p-2 text-xl focus:outline-none"
+            aria-label="Toggle Navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden max-w-7xl mx-auto mt-2 glass-panel rounded-2xl p-6 flex flex-col gap-4 text-center font-mono"
+      >
+        <a
+          href="#about"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2 border-b border-white/5"
+          >About</a
+        >
+        <a
+          href="#skills"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2 border-b border-white/5"
+          >Skills</a
+        >
+        <a
+          href="#projects"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2 border-b border-white/5"
+          >Projects</a
+        >
+        <a
+          href="#interactive"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2 border-b border-white/5"
+          >Playground</a
+        >
+        <a
+          href="#terminal"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2 border-b border-white/5"
+          >Terminal</a
+        >
+        <a
+          href="#contact"
+          class="mobile-nav-link text-cyber-dimText hover:text-cyber-cyan py-2"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <section
+      id="hero"
+      class="relative min-h-screen pt-32 pb-20 flex items-center justify-center px-4 z-10"
+    >
+      <div
+        class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+      >
+        <!-- Left Headline Column -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <!-- Status Badge -->
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-xs font-mono"
+          >
+            <span class="pulse-dot"></span>
+            <span>AVAILABLE FOR SOFTWARE DEVELOPMENT ROLES</span>
+          </div>
+
+          <!-- Main Name & Interactive Typing Subtitle -->
+          <div class="space-y-2">
+            <h1
+              class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white"
+            >
+              Sumangal <span class="text-gradient-cyan">Tengse</span>
+            </h1>
+            <p
+              class="text-xl sm:text-2xl font-mono text-cyber-dimText h-12 flex items-center justify-center lg:justify-start"
+            >
+              <span class="text-cyber-purple font-bold">&gt;&nbsp;</span>
+              <span id="typed-text" class="text-cyber-cyan"></span>
+              <span class="animate-ping font-bold text-cyber-cyan">|</span>
+            </p>
+          </div>
+
+          <!-- Bio Summary -->
+          <p
+            class="text-slate-300 leading-relaxed text-base sm:text-lg max-w-2xl mx-auto lg:mx-0"
+          >
+            Third-year Computer Science Engineering student at DES Pune
+            University with hands-on proficiency in
+            <span class="text-cyber-cyan font-mono">Java</span>,
+            <span class="text-cyber-cyan font-mono">Python</span>,
+            <span class="text-cyber-cyan font-mono">React.js</span>, and
+            <span class="text-cyber-cyan font-mono">Databases</span>. Passionate
+            about building ethical data systems, graph algorithms, and
+            interactive intelligent apps.
+          </p>
+
+          <!-- Quick Action Buttons -->
+          <div
+            class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4"
+          >
+            <a
+              href="#projects"
+              class="px-6 py-3.5 rounded-xl font-mono text-sm font-bold bg-gradient-to-r from-cyber-cyan to-blue-600 text-cyber-bg hover:shadow-neon-cyan transition-all transform hover:-translate-y-1 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-code-branch"></i> EXPLORE PROJECTS
+            </a>
+            <a
+              href="#contact"
+              class="px-6 py-3.5 rounded-xl font-mono text-sm font-bold glass-panel text-white border border-cyber-cyan/30 hover:border-cyber-cyan hover:bg-cyber-cyan/10 transition-all transform hover:-translate-y-1 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-paper-plane text-cyber-cyan"></i> CONTACT ME
+            </a>
+            <button
+              onclick="copyEmailToClipboard()"
+              class="p-3.5 rounded-xl glass-panel text-cyber-dimText hover:text-cyber-cyan border border-white/10 hover:border-cyber-cyan/40 transition-all group"
+              title="Copy Email"
+            >
+              <i
+                class="fa-solid fa-copy group-hover:scale-110 transition-transform"
+              ></i>
+            </button>
+          </div>
+
+          <!-- Quick Highlight Stat Cards -->
+          <div
+            class="grid grid-cols-3 gap-4 pt-6 max-w-lg mx-auto lg:mx-0 font-mono"
+          >
+            <div
+              class="glass-panel p-3 rounded-xl border border-white/10 text-center"
+            >
+              <div class="text-2xl sm:text-3xl font-black text-cyber-cyan">
+                8.43
+              </div>
+              <div
+                class="text-[10px] sm:text-xs text-cyber-dimText uppercase tracking-wider"
+              >
+                CGPA B.Tech
+              </div>
+            </div>
+            <div
+              class="glass-panel p-3 rounded-xl border border-white/10 text-center"
+            >
+              <div class="text-2xl sm:text-3xl font-black text-cyber-purple">
+                3rd
+              </div>
+              <div
+                class="text-[10px] sm:text-xs text-cyber-dimText uppercase tracking-wider"
+              >
+                Hackathon COEP
+              </div>
+            </div>
+            <div
+              class="glass-panel p-3 rounded-xl border border-white/10 text-center"
+            >
+              <div class="text-2xl sm:text-3xl font-black text-cyber-pink">
+                3+
+              </div>
+              <div
+                class="text-[10px] sm:text-xs text-cyber-dimText uppercase tracking-wider"
+              >
+                Core Projects
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Graphic / Avatar Card Column -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md animate-float">
+            <!-- Glowing Background Ambient Blur -->
+            <div
+              class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink opacity-40 blur-xl"
+            ></div>
+
+            <!-- Cyber Card Shell -->
+            <div
+              class="relative glass-panel rounded-3xl p-6 border border-cyber-cyan/30 space-y-6"
+            >
+              <!-- Top HUD Bar -->
+              <div
+                class="flex justify-between items-center border-b border-white/10 pb-4"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                </div>
+                <span class="font-mono text-xs text-cyber-cyan tracking-widest"
+                  >SYS_STATUS: ONLINE</span
+                >
+              </div>
+
+              <!-- Central Profile Cyber Spec Canvas/Graphic -->
+              <div
+                class="relative bg-cyber-dark/80 rounded-2xl p-6 border border-white/5 space-y-4"
+              >
+                <div
+                  class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-cyber-cyan to-cyber-purple p-1 shadow-neon-cyan"
+                >
+                  <div
+                    class="w-full h-full bg-cyber-bg rounded-full flex items-center justify-center text-3xl font-mono font-bold text-cyber-cyan"
+                  >
+                    ST
+                  </div>
+                </div>
+
+                <div class="text-center font-mono space-y-1">
+                  <div class="text-white font-bold">Sumangal S. Tengse</div>
+                  <div class="text-xs text-cyber-dimText">
+                    DES Pune University
+                  </div>
+                  <div class="text-xs text-cyber-cyan">
+                    B.Tech Computer Science
+                  </div>
+                </div>
+
+                <!-- Live System Code Snippet Stream -->
+                <div
+                  class="bg-black/60 rounded-lg p-3 font-mono text-[11px] text-slate-300 space-y-1 overflow-x-auto border border-white/5"
+                >
+                  <div class="text-cyber-purple">
+                    <span class="text-cyber-cyan">const</span> student = {
+                  </div>
+                  <div class="pl-4">
+                    <span class="text-slate-400">status:</span>
+                    <span class="text-green-400">'3rd Year CSE'</span>,
+                  </div>
+                  <div class="pl-4">
+                    <span class="text-slate-400">location:</span>
+                    <span class="text-yellow-300">'Pune, Maharashtra'</span>,
+                  </div>
+                  <div class="pl-4">
+                    <span class="text-slate-400">interests:</span> [<span
+                      class="text-cyber-cyan"
+                      >'WebDev'</span
+                    >, <span class="text-cyber-cyan">'DSA'</span>,
+                    <span class="text-cyber-cyan">'AI'</span>]
+                  </div>
+                  <div class="text-cyber-purple">};</div>
+                </div>
+              </div>
+
+              <!-- Card Footer HUD Badges -->
+              <div
+                class="flex items-center justify-between text-xs font-mono text-cyber-dimText pt-2"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i class="fa-solid fa-location-dot text-cyber-cyan"></i>
+                  Pune, IN</span
+                >
+                <span class="flex items-center gap-1.5"
+                  ><i class="fa-solid fa-graduation-cap text-cyber-purple"></i>
+                  CSE 2026</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 relative z-10 px-4">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// INITIALIZING PROFILE DATA</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            About <span class="text-gradient-cyan">Sumangal</span>
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"
+          ></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Academic Journey Card -->
+          <div
+            class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 border border-white/10 hover:border-cyber-cyan/40 transition-all"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan text-xl"
+              >
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">
+                  Academic Qualifications
+                </h3>
+                <p class="text-xs font-mono text-cyber-dimText">
+                  DES Pune University
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-4 font-mono">
+              <div
+                class="bg-cyber-dark/60 p-4 rounded-xl border border-white/5 space-y-1"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-bold"
+                    >B.Tech Computer Science & Eng.</span
+                  >
+                  <span
+                    class="text-xs px-2 py-0.5 rounded bg-cyber-cyan/20 text-cyber-cyan"
+                    >CGPA: 8.43/10</span
+                  >
+                </div>
+                <p class="text-xs text-cyber-dimText">
+                  Third-Year Undergraduate | Current
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div
+                  class="bg-cyber-dark/60 p-3 rounded-xl border border-white/5"
+                >
+                  <span class="text-slate-400 block">HSC Board Marks</span>
+                  <span class="text-cyber-purple font-bold text-sm"
+                    >77.83%</span
+                  >
+                </div>
+                <div
+                  class="bg-cyber-dark/60 p-3 rounded-xl border border-white/5"
+                >
+                  <span class="text-slate-400 block">SSC Board Marks</span>
+                  <span class="text-cyber-cyan font-bold text-sm">89.00%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Focus & Engineering Passion Card -->
+          <div
+            class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 border border-white/10 hover:border-cyber-purple/40 transition-all"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-xl bg-cyber-purple/10 border border-cyber-purple/30 flex items-center justify-center text-cyber-purple text-xl"
+              >
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">
+                  Technical Core Focus
+                </h3>
+                <p class="text-xs font-mono text-cyber-dimText">
+                  Software & Systems Development
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+              <p>
+                Driven by a passionate curiosity for complex algorithm design,
+                full-stack application development, and robust data
+                architecture.
+              </p>
+              <p>
+                Proven ability to transition theoretical Computer Science
+                principles—such as graph data structures and ethical database
+                modeling—into user-friendly interactive software applications
+                and winning hackathon entries.
+              </p>
+
+              <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs">
+                <span
+                  class="px-3 py-1 rounded-lg bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20"
+                  >Software Engineering</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-cyber-purple/10 text-cyber-purple border border-cyber-purple/20"
+                  >Web Technologies</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-cyber-pink/10 text-cyber-pink border border-cyber-pink/20"
+                  >Graph Data Structures</span
+                >
+                <span
+                  class="px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                  >Database Systems</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="py-20 relative z-10 px-4 bg-cyber-dark/40">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// TECHNICAL MATRIX & PROFICIENCY</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            Skills & <span class="text-gradient-purple">Technologies</span>
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-cyber-purple to-cyber-pink mx-auto rounded-full"
+          ></div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Programming Languages -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyber-cyan/40 transition-all space-y-4"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-code text-cyber-cyan text-xl"></i>
+              <h3 class="font-bold text-lg text-white">Languages</h3>
+            </div>
+
+            <div class="space-y-4 font-mono text-sm">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">Java</span>
+                  <span class="text-cyber-cyan">88%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-cyan h-full rounded-full w-[88%] shadow-neon-cyan"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">Python</span>
+                  <span class="text-cyber-cyan">85%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-cyan h-full rounded-full w-[85%] shadow-neon-cyan"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyber-purple/40 transition-all space-y-4"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-layer-group text-cyber-purple text-xl"></i>
+              <h3 class="font-bold text-lg text-white">Web Development</h3>
+            </div>
+
+            <div class="space-y-4 font-mono text-sm">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">React.js</span>
+                  <span class="text-cyber-purple">82%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-purple h-full rounded-full w-[82%] shadow-neon-purple"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">HTML5 / CSS3</span>
+                  <span class="text-cyber-purple">90%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-purple h-full rounded-full w-[90%] shadow-neon-purple"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Database Systems -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyber-pink/40 transition-all space-y-4"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-database text-cyber-pink text-xl"></i>
+              <h3 class="font-bold text-lg text-white">Database Systems</h3>
+            </div>
+
+            <div class="space-y-4 font-mono text-sm">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">MySQL</span>
+                  <span class="text-cyber-pink">85%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-pink h-full rounded-full w-[85%] shadow-neon-pink"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-300">MongoDB</span>
+                  <span class="text-cyber-pink">78%</span>
+                </div>
+                <div
+                  class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-cyber-pink h-full rounded-full w-[78%] shadow-neon-pink"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CS Fundamentals & Tools -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyber-cyan/40 transition-all space-y-4 md:col-span-2 lg:col-span-3"
+          >
+            <h3
+              class="font-bold text-lg text-white font-mono text-center flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-gears text-cyber-cyan"></i> Theoretical
+              Fundamentals & Tools
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3 font-mono text-xs">
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Graph Data Structures</span
+              >
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Tkinter GUI</span
+              >
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Object-Oriented Programming</span
+              >
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Ethical Data Handling</span
+              >
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Generative & Agentic AI</span
+              >
+              <span
+                class="px-4 py-2 rounded-xl bg-cyber-dark text-slate-200 border border-white/10 hover:border-cyber-cyan transition-colors"
+                >Git / GitHub</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-20 relative z-10 px-4">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// FEATURED ENGINEERING PROJECTS</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            Project <span class="text-gradient-cyan">Showcase</span>
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"
+          ></div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Project 1: MindVault -->
+          <div
+            class="glass-panel rounded-2xl overflow-hidden border border-white/10 hover:border-cyber-cyan/50 transition-all duration-300 flex flex-col justify-between group"
+          >
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-start">
+                <div
+                  class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan text-xl"
+                >
+                  <i class="fa-solid fa-brain"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-cyber-cyan/10 text-cyber-cyan font-mono text-[10px]"
+                  >React + MySQL</span
+                >
+              </div>
+
+              <div>
+                <h3
+                  class="text-xl font-bold text-white group-hover:text-cyber-cyan transition-colors"
+                >
+                  MindVault
+                </h3>
+                <p class="text-xs font-mono text-cyber-dimText">
+                  Mental Health Database System
+                </p>
+              </div>
+
+              <p class="text-slate-300 text-sm leading-relaxed">
+                A specialized database-driven web application tailored for
+                longitudinal mental health data analysis, prioritizing robust
+                security and ethical data handling protocols.
+              </p>
+
+              <ul
+                class="text-xs text-slate-400 space-y-1.5 list-disc list-inside font-mono"
+              >
+                <li>React front-end synced with MySQL</li>
+                <li>Ethical privacy & compliance data layer</li>
+                <li>Longitudinal patient visual trends</li>
+              </ul>
+            </div>
+
+            <div class="p-6 pt-0 font-mono">
+              <button
+                onclick="openProjectModal('mindvault')"
+                class="w-full py-2.5 rounded-xl bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30 hover:bg-cyber-cyan hover:text-cyber-bg transition-all text-xs font-bold flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-eye"></i> EXPLORE DEMO PREVIEW
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 2: Morse Code Translator -->
+          <div
+            class="glass-panel rounded-2xl overflow-hidden border border-white/10 hover:border-cyber-purple/50 transition-all duration-300 flex flex-col justify-between group"
+          >
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-start">
+                <div
+                  class="w-12 h-12 rounded-xl bg-cyber-purple/10 border border-cyber-purple/30 flex items-center justify-center text-cyber-purple text-xl"
+                >
+                  <i class="fa-solid fa-signal"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-cyber-purple/10 text-cyber-purple font-mono text-[10px]"
+                  >Python + Tkinter</span
+                >
+              </div>
+
+              <div>
+                <h3
+                  class="text-xl font-bold text-white group-hover:text-cyber-purple transition-colors"
+                >
+                  Morse Code Translator
+                </h3>
+                <p class="text-xs font-mono text-cyber-dimText">
+                  Interactive Desktop GUI Utility
+                </p>
+              </div>
+
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Interactive desktop software that translates English text into
+                Morse code and vice-versa, featuring multi-language conversion
+                logic and desktop Tkinter interface.
+              </p>
+
+              <ul
+                class="text-xs text-slate-400 space-y-1.5 list-disc list-inside font-mono"
+              >
+                <li>Bidirectional text & morse conversion</li>
+                <li>Tkinter GUI desktop architecture</li>
+                <li>Dynamic language parsing logic</li>
+              </ul>
+            </div>
+
+            <div class="p-6 pt-0 font-mono">
+              <a
+                href="#morse-simulator"
+                class="w-full py-2.5 rounded-xl bg-cyber-purple/10 text-cyber-purple border border-cyber-purple/30 hover:bg-cyber-purple hover:text-cyber-bg transition-all text-xs font-bold flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-play"></i> LAUNCH SIMULATOR
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3: Friend Recommendation System -->
+          <div
+            class="glass-panel rounded-2xl overflow-hidden border border-white/10 hover:border-cyber-pink/50 transition-all duration-300 flex flex-col justify-between group"
+          >
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-start">
+                <div
+                  class="w-12 h-12 rounded-xl bg-cyber-pink/10 border border-cyber-pink/30 flex items-center justify-center text-cyber-pink text-xl"
+                >
+                  <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-cyber-pink/10 text-cyber-pink font-mono text-[10px]"
+                  >Java + Graph DSA</span
+                >
+              </div>
+
+              <div>
+                <h3
+                  class="text-xl font-bold text-white group-hover:text-cyber-pink transition-colors"
+                >
+                  Friend Recommendation
+                </h3>
+                <p class="text-xs font-mono text-cyber-dimText">
+                  Graph Mutual Connection Engine
+                </p>
+              </div>
+
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Algorithmic social network engine evaluating complex mutual node
+                overlaps to accurately rank and suggest potential user
+                connections.
+              </p>
+
+              <ul
+                class="text-xs text-slate-400 space-y-1.5 list-disc list-inside font-mono"
+              >
+                <li>Adjacency list graph modeling</li>
+                <li>Mutual connection weighting engine</li>
+                <li>High performance Java logic</li>
+              </ul>
+            </div>
+
+            <div class="p-6 pt-0 font-mono">
+              <a
+                href="#graph-simulator"
+                class="w-full py-2.5 rounded-xl bg-cyber-pink/10 text-cyber-pink border border-cyber-pink/30 hover:bg-cyber-pink hover:text-cyber-bg transition-all text-xs font-bold flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-circle-nodes"></i> TEST GRAPH VISUALIZER
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interactive" class="py-20 relative z-10 px-4 bg-cyber-dark/60">
+      <div class="max-w-6xl mx-auto space-y-16">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// LIVE INTERACTIVE PLAYGROUND</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            Interactive <span class="text-gradient-cyan">Project Widgets</span>
+          </h2>
+          <p class="text-sm font-mono text-cyber-dimText">
+            Test Sumangal's algorithm implementations directly in your browser
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Morse Code Translator Simulator Widget -->
+          <div
+            id="morse-simulator"
+            class="glass-panel p-6 rounded-2xl border border-cyber-purple/30 space-y-4"
+          >
+            <div
+              class="flex items-center justify-between border-b border-white/10 pb-3"
+            >
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-signal text-cyber-purple"></i>
+                <h3 class="font-bold text-white font-mono text-sm">
+                  Morse Code Translator Widget
+                </h3>
+              </div>
+              <span
+                class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-purple/20 text-cyber-purple"
+                >Python Algorithm Sim</span
+              >
+            </div>
+
+            <div class="space-y-3 font-mono">
+              <div>
+                <label class="text-xs text-cyber-dimText block mb-1"
+                  >Enter Text (English or Morse):</label
+                >
+                <textarea
+                  id="morse-input"
+                  rows="3"
+                  class="w-full bg-cyber-dark rounded-xl p-3 text-sm text-white border border-white/10 focus:border-cyber-purple outline-none resize-none"
+                  placeholder="Type 'HELLO WORLD' or '.... . .-.. .-.. ---'"
+                ></textarea>
+              </div>
+
+              <div class="flex gap-2">
+                <button
+                  onclick="translateMorse()"
+                  class="flex-1 py-2.5 rounded-xl bg-cyber-purple text-cyber-bg font-bold text-xs hover:bg-opacity-90 transition-all shadow-neon-purple"
+                >
+                  <i class="fa-solid fa-bolt mr-1"></i> TRANSLATE
+                </button>
+                <button
+                  onclick="clearMorse()"
+                  class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-slate-300"
+                >
+                  CLEAR
+                </button>
+              </div>
+
+              <div>
+                <label class="text-xs text-cyber-dimText block mb-1"
+                  >Output Result:</label
+                >
+                <div
+                  id="morse-output"
+                  class="min-h-[60px] bg-cyber-dark/80 rounded-xl p-3 text-sm font-mono text-cyber-cyan border border-white/5 break-words"
+                >
+                  ... Output ready ...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Friend Recommendation Graph Visualizer -->
+          <div
+            id="graph-simulator"
+            class="glass-panel p-6 rounded-2xl border border-cyber-pink/30 space-y-4"
+          >
+            <div
+              class="flex items-center justify-between border-b border-white/10 pb-3"
+            >
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-nodes text-cyber-pink"></i>
+                <h3 class="font-bold text-white font-mono text-sm">
+                  Graph Friend Recommendation Sim
+                </h3>
+              </div>
+              <span
+                class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-pink/20 text-cyber-pink"
+                >Java Graph Algorithm</span
+              >
+            </div>
+
+            <div class="space-y-3 font-mono">
+              <div
+                class="relative w-full h-48 bg-cyber-dark/80 rounded-xl overflow-hidden border border-white/5 flex items-center justify-center"
+              >
+                <canvas id="graph-canvas" class="w-full h-full"></canvas>
+              </div>
+
+              <div class="flex items-center justify-between text-xs">
+                <button
+                  onclick="recommendFriendStep()"
+                  class="px-4 py-2 rounded-xl bg-cyber-pink text-white font-bold text-xs hover:bg-opacity-90 transition-all shadow-neon-pink"
+                >
+                  <i class="fa-solid fa-rotate mr-1"></i> SIMULATE
+                  RECOMMENDATION
+                </button>
+                <div id="graph-status" class="text-xs text-cyber-cyan">
+                  Select user node to calculate mutual connection
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 relative z-10 px-4">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// RECOGNITION & CERTIFICATIONS</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            Achievements & <span class="text-gradient-cyan">Certs</span>
+          </h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"
+          ></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Achievement Card -->
+          <div
+            class="glass-panel p-8 rounded-2xl border border-cyber-cyan/30 flex items-start gap-4"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl shrink-0"
+            >
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="space-y-2">
+              <span
+                class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px] uppercase font-bold"
+                >3rd Place Award</span
+              >
+              <h3 class="text-xl font-bold text-white">
+                L&T TechXcelerate Hackathon
+              </h3>
+              <p class="text-xs font-mono text-cyber-dimText">
+                Conducted by College of Engineering Pune (COEP)
+              </p>
+              <p class="text-sm text-slate-300 pt-2">
+                Recognized among premier participating student developer teams
+                for building innovative technology solutions under hackathon
+                time constraints.
+              </p>
+            </div>
+          </div>
+
+          <!-- Certification Card -->
+          <div
+            class="glass-panel p-8 rounded-2xl border border-cyber-purple/30 flex items-start gap-4"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-cyber-purple/10 border border-cyber-purple/30 flex items-center justify-center text-cyber-purple text-2xl shrink-0"
+            >
+              <i class="fa-solid fa-certificate"></i>
+            </div>
+            <div class="space-y-2">
+              <span
+                class="px-2.5 py-0.5 rounded bg-cyber-purple/20 text-cyber-purple font-mono text-[10px] uppercase font-bold"
+                >Verified Certification</span
+              >
+              <h3 class="text-xl font-bold text-white">
+                Generative and Agentic AI
+              </h3>
+              <p class="text-xs font-mono text-cyber-dimText">Udemy Verified</p>
+              <p class="text-sm text-slate-300 pt-2">
+                Specialized training in Generative Artificial Intelligence, LLM
+                agent workflows, prompt architecture, and autonomous system
+                design.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="terminal" class="py-20 relative z-10 px-4 bg-cyber-dark/80">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// GEEK CLI INTERFACE</span
+          >
+          <h2 class="text-3xl font-extrabold text-white">
+            Sumangal <span class="text-gradient-cyan">Terminal</span>
+          </h2>
+          <p class="text-xs font-mono text-cyber-dimText">
+            Type '<span class="text-cyber-cyan">help</span>' to list available
+            commands
+          </p>
+        </div>
+
+        <!-- Terminal Window -->
+        <div
+          class="glass-panel rounded-2xl border border-cyber-cyan/30 overflow-hidden shadow-2xl font-mono text-xs"
+        >
+          <!-- Terminal Header Bar -->
+          <div
+            class="bg-slate-900/90 px-4 py-3 flex justify-between items-center border-b border-white/10"
+          >
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+              <span
+                class="w-3 h-3 rounded-full bg-yellow-500 inline-block"
+              ></span>
+              <span
+                class="w-3 h-3 rounded-full bg-green-500 inline-block"
+              ></span>
+              <span class="ml-2 text-slate-400">sumangal@pune-dev:~</span>
+            </div>
+            <span class="text-slate-500">bash v5.2</span>
+          </div>
+
+          <!-- Terminal Body Log -->
+          <div
+            id="terminal-body"
+            class="p-4 h-72 overflow-y-auto space-y-2 bg-black/80 text-slate-300"
+          >
+            <div>Welcome to Sumangal Tengse's CLI v1.0.0</div>
+            <div>
+              Type <span class="text-cyber-cyan font-bold">help</span> to view
+              available system commands.
+            </div>
+            <div class="border-b border-white/10 my-2"></div>
+          </div>
+
+          <!-- Terminal Input Form -->
+          <form
+            id="terminal-form"
+            onsubmit="handleTerminalCommand(event)"
+            class="bg-slate-900/80 px-4 py-2.5 flex items-center gap-2 border-t border-white/10"
+          >
+            <span class="text-cyber-cyan font-bold">st-guest@dev:~$</span>
+            <input
+              id="terminal-input"
+              type="text"
+              autocomplete="off"
+              class="w-full bg-transparent text-cyber-cyan outline-none border-none font-mono text-xs"
+              placeholder="type a command..."
+            />
+            <button
+              type="submit"
+              class="text-xs text-cyber-cyan px-2 py-1 rounded hover:bg-cyber-cyan/10"
+            >
+              EXEC
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 relative z-10 px-4">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Section Header -->
+        <div class="text-center space-y-2">
+          <span
+            class="font-mono text-xs text-cyber-cyan tracking-widest uppercase"
+            >// GET IN TOUCH</span
+          >
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            Let's <span class="text-gradient-cyan">Connect</span>
+          </h2>
+          <p class="text-sm font-mono text-cyber-dimText">
+            Open for software engineering opportunities and technical
+            collaborations
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Direct Contact Info Cards Column -->
+          <div class="lg:col-span-5 space-y-4">
+            <div
+              class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4"
+            >
+              <h3 class="text-xl font-bold text-white font-mono">
+                Contact Details
+              </h3>
+
+              <div class="space-y-3 font-mono text-xs">
+                <div
+                  class="flex items-center justify-between p-3 rounded-xl bg-cyber-dark/60 border border-white/5"
+                >
+                  <div class="flex items-center gap-3">
+                    <i
+                      class="fa-solid fa-envelope text-cyber-cyan text-base"
+                    ></i>
+                    <div>
+                      <span class="text-slate-400 block text-[10px]"
+                        >EMAIL</span
+                      >
+                      <span class="text-white">sumangaltengse4@gmail.com</span>
+                    </div>
+                  </div>
+                  <button
+                    onclick="copyEmailToClipboard()"
+                    class="text-cyber-cyan hover:text-white p-2"
+                  >
+                    <i class="fa-solid fa-copy"></i>
+                  </button>
+                </div>
+
+                <div
+                  class="flex items-center justify-between p-3 rounded-xl bg-cyber-dark/60 border border-white/5"
+                >
+                  <div class="flex items-center gap-3">
+                    <i
+                      class="fa-solid fa-phone text-cyber-purple text-base"
+                    ></i>
+                    <div>
+                      <span class="text-slate-400 block text-[10px]"
+                        >PHONE</span
+                      >
+                      <span class="text-white">+91 7058032581</span>
+                    </div>
+                  </div>
+                  <button
+                    onclick="copyPhoneToClipboard()"
+                    class="text-cyber-purple hover:text-white p-2"
+                  >
+                    <i class="fa-solid fa-copy"></i>
+                  </button>
+                </div>
+
+                <div
+                  class="flex items-center gap-3 p-3 rounded-xl bg-cyber-dark/60 border border-white/5"
+                >
+                  <i
+                    class="fa-solid fa-location-dot text-cyber-pink text-base"
+                  ></i>
+                  <div>
+                    <span class="text-slate-400 block text-[10px]"
+                      >LOCATION</span
+                    >
+                    <span class="text-white">Pune, Maharashtra, India</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Buttons -->
+              <div class="pt-2 grid grid-cols-2 gap-3 font-mono text-xs">
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-3 rounded-xl glass-panel border border-white/10 hover:border-cyber-cyan text-center text-white flex items-center justify-center gap-2 hover:bg-cyber-cyan/10 transition-all"
+                >
+                  <i class="fa-brands fa-github text-base text-cyber-cyan"></i>
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-3 rounded-xl glass-panel border border-white/10 hover:border-cyber-purple text-center text-white flex items-center justify-center gap-2 hover:bg-cyber-purple/10 transition-all"
+                >
+                  <i
+                    class="fa-brands fa-linkedin text-base text-cyber-purple"
+                  ></i>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Message Form -->
+          <div class="lg:col-span-7">
+            <form
+              onsubmit="handleContactSubmit(event)"
+              class="glass-panel p-6 sm:p-8 rounded-2xl border border-cyber-cyan/30 space-y-4"
+            >
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs"
+              >
+                <div>
+                  <label class="text-slate-300 block mb-1">YOUR NAME</label>
+                  <input
+                    type="text"
+                    required
+                    class="w-full bg-cyber-dark rounded-xl p-3 text-white border border-white/10 focus:border-cyber-cyan outline-none"
+                    placeholder="e.g. Alex Mercer"
+                  />
+                </div>
+                <div>
+                  <label class="text-slate-300 block mb-1">YOUR EMAIL</label>
+                  <input
+                    type="email"
+                    required
+                    class="w-full bg-cyber-dark rounded-xl p-3 text-white border border-white/10 focus:border-cyber-cyan outline-none"
+                    placeholder="alex@company.com"
+                  />
+                </div>
+              </div>
+
+              <div class="font-mono text-xs">
+                <label class="text-slate-300 block mb-1">SUBJECT</label>
+                <input
+                  type="text"
+                  required
+                  class="w-full bg-cyber-dark rounded-xl p-3 text-white border border-white/10 focus:border-cyber-cyan outline-none"
+                  placeholder="Project collaboration / Opportunity"
+                />
+              </div>
+
+              <div class="font-mono text-xs">
+                <label class="text-slate-300 block mb-1">MESSAGE</label>
+                <textarea
+                  rows="4"
+                  required
+                  class="w-full bg-cyber-dark rounded-xl p-3 text-white border border-white/10 focus:border-cyber-cyan outline-none resize-none"
+                  placeholder="Write your message here..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyber-cyan to-blue-600 text-cyber-bg font-mono font-bold text-sm hover:shadow-neon-cyan transition-all"
+              >
+                <i class="fa-solid fa-paper-plane mr-2"></i> SEND DIRECT MESSAGE
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      id="project-modal"
+      class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+    >
+      <div
+        class="glass-panel max-w-2xl w-full rounded-2xl border border-cyber-cyan/40 p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto"
+      >
+        <button
+          onclick="closeProjectModal()"
+          class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div id="modal-content" class="space-y-4">
+          <!-- Modal content dynamically injected -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast Element -->
+    <div
+      id="toast"
+      class="fixed bottom-6 right-6 z-50 hidden glass-panel px-4 py-3 rounded-xl border border-cyber-cyan text-cyber-cyan font-mono text-xs shadow-neon-cyan flex items-center gap-2"
+    >
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toast-message">Notification</span>
+    </div>
+
+    <footer
+      class="py-8 border-t border-white/10 relative z-10 text-center font-mono text-xs text-cyber-dimText"
+    >
+      <p>
+        © 2026 Sumangal Sandeep Tengse. Built with React design principles,
+        Tailwind CSS & HTML Canvas.
+      </p>
+    </footer>
+
+    <script>
+      const canvas = document.getElementById("bg-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+      const particleCount = 60;
+      let mouse = { x: null, y: null, radius: 120 };
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      window.addEventListener("mousemove", (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 1;
+          this.speedX = (Math.random() - 0.5) * 0.8;
+          this.speedY = (Math.random() - 0.5) * 0.8;
+          this.color = Math.random() > 0.5 ? "#00f3ff" : "#9d4edd";
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+
+          // Mouse interaction distance
+          if (mouse.x && mouse.y) {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+              this.x -= dx * 0.02;
+              this.y -= dy * 0.02;
+            }
+          }
+        }
+
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+      initParticles();
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.strokeStyle = `rgba(0, 243, 255, ${1 - dist / 100})`;
+              ctx.lineWidth = 0.4;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+
+      const phrases = [
+        "Computer Science Engineer",
+        "Java & Python Developer",
+        "React & Web Technologies Specialist",
+        "Database Systems Engineer",
+        "Hackathon Winner (COEP)",
+      ];
+      let phraseIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+      const typedTextEl = document.getElementById("typed-text");
+
+      function typeLoop() {
+        const current = phrases[phraseIdx];
+        if (isDeleting) {
+          typedTextEl.textContent = current.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          typedTextEl.textContent = current.substring(0, charIdx + 1);
+          charIdx++;
+        }
+
+        let speed = isDeleting ? 40 : 80;
+
+        if (!isDeleting && charIdx === current.length) {
+          speed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          speed = 500;
+        }
+
+        setTimeout(typeLoop, speed);
+      }
+      typeLoop();
+
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        const toastMsg = document.getElementById("toast-message");
+        toastMsg.textContent = msg;
+        toast.classList.remove("hidden");
+        setTimeout(() => {
+          toast.classList.add("hidden");
+        }, 3000);
+      }
+
+      function copyEmailToClipboard() {
+        const email = "sumangaltengse4@gmail.com";
+        const input = document.createElement("input");
+        input.value = email;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        showToast("Copied Email: " + email);
+      }
+
+      function copyPhoneToClipboard() {
+        const phone = "7058032581";
+        const input = document.createElement("input");
+        input.value = phone;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        showToast("Copied Phone: +91 " + phone);
+      }
+
+      const MORSE_CODE_MAP = {
+        A: ".-",
+        B: "-...",
+        C: "-.-.",
+        D: "-..",
+        E: ".",
+        F: "..-.",
+        G: "--.",
+        H: "....",
+        I: "..",
+        J: ".---",
+        K: "-.-",
+        L: ".-..",
+        M: "--",
+        N: "-.",
+        O: "---",
+        P: ".--.",
+        Q: "--.-",
+        R: ".-.",
+        S: "...",
+        T: "-",
+        U: "..-",
+        V: "...-",
+        W: ".--",
+        X: "-..-",
+        Y: "-.--",
+        Z: "--..",
+        1: ".----",
+        2: "..---",
+        3: "...--",
+        4: "....-",
+        5: ".....",
+        6: "-....",
+        7: "--...",
+        8: "---..",
+        9: "----.",
+        0: "-----",
+        " ": "/",
+      };
+
+      const REVERSE_MORSE = Object.fromEntries(
+        Object.entries(MORSE_CODE_MAP).map(([k, v]) => [v, k]),
+      );
+
+      function translateMorse() {
+        const input = document.getElementById("morse-input").value.trim();
+        const outputEl = document.getElementById("morse-output");
+        if (!input) {
+          outputEl.textContent = "... Output ready ...";
+          return;
+        }
+
+        // Check if input is Morse code
+        if (/^[.\-\/\s]+$/.test(input)) {
+          // Morse to Text
+          const words = input.split("/");
+          const decoded = words
+            .map((word) => {
+              const chars = word.trim().split(" ");
+              return chars.map((c) => REVERSE_MORSE[c] || "?").join("");
+            })
+            .join(" ");
+          outputEl.textContent = "ENGL: " + decoded;
+        } else {
+          // Text to Morse
+          const upper = input.toUpperCase();
+          const encoded = upper
+            .split("")
+            .map((char) => MORSE_CODE_MAP[char] || "?")
+            .join(" ");
+          outputEl.textContent = "MORSE: " + encoded;
+        }
+      }
+
+      function clearMorse() {
+        document.getElementById("morse-input").value = "";
+        document.getElementById("morse-output").textContent =
+          "... Output ready ...";
+      }
+
+      const gCanvas = document.getElementById("graph-canvas");
+      const gCtx = gCanvas.getContext("2d");
+
+      function resizeGraphCanvas() {
+        if (!gCanvas) return;
+        gCanvas.width = gCanvas.parentElement.clientWidth;
+        gCanvas.height = gCanvas.parentElement.clientHeight;
+      }
+      window.addEventListener("resize", resizeGraphCanvas);
+      setTimeout(resizeGraphCanvas, 100);
+
+      const nodes = [
+        { id: "You", x: 0.2, y: 0.5, color: "#00f3ff" },
+        { id: "Alice", x: 0.5, y: 0.2, color: "#9d4edd" },
+        { id: "Bob", x: 0.5, y: 0.8, color: "#9d4edd" },
+        { id: "Target (Suggested)", x: 0.8, y: 0.5, color: "#f72585" },
+      ];
+
+      const edges = [
+        [0, 1],
+        [0, 2], // You are friends with Alice & Bob
+        [1, 3],
+        [2, 3], // Alice & Bob are both friends with Target
+      ];
+
+      let simStep = 0;
+
+      function drawGraph() {
+        if (!gCanvas) return;
+        gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+        const w = gCanvas.width;
+        const h = gCanvas.height;
+
+        // Draw Edges
+        edges.forEach(([i, j], idx) => {
+          gCtx.strokeStyle =
+            simStep > 0 && (idx === 2 || idx === 3)
+              ? "#f72585"
+              : "rgba(255,255,255,0.2)";
+          gCtx.lineWidth = simStep > 0 && (idx === 2 || idx === 3) ? 2.5 : 1;
+          gCtx.beginPath();
+          gCtx.moveTo(nodes[i].x * w, nodes[i].y * h);
+          gCtx.lineTo(nodes[j].x * w, nodes[j].y * h);
+          gCtx.stroke();
+        });
+
+        // Draw Nodes
+        nodes.forEach((node) => {
+          gCtx.fillStyle = node.color;
+          gCtx.beginPath();
+          gCtx.arc(node.x * w, node.y * h, 12, 0, Math.PI * 2);
+          gCtx.fill();
+
+          gCtx.fillStyle = "#ffffff";
+          gCtx.font = "10px Fira Code";
+          gCtx.fillText(node.id, node.x * w - 20, node.y * h + 25);
+        });
+      }
+
+      setInterval(drawGraph, 200);
+
+      function recommendFriendStep() {
+        const statusEl = document.getElementById("graph-status");
+        if (simStep === 0) {
+          simStep = 1;
+          statusEl.textContent =
+            "Analyzing mutual nodes: Alice & Bob share mutual connection!";
+        } else {
+          simStep = 0;
+          statusEl.textContent =
+            "Recommendation Score: 98% -> Suggesting Target user!";
+        }
+        drawGraph();
+      }
+
+      function handleTerminalCommand(e) {
+        e.preventDefault();
+        const inputEl = document.getElementById("terminal-input");
+        const command = inputEl.value.trim().toLowerCase();
+        const bodyEl = document.getElementById("terminal-body");
+
+        if (!command) return;
+
+        // Echo input
+        const cmdLine = document.createElement("div");
+        cmdLine.innerHTML = `<span class="text-cyber-cyan font-bold">st-guest@dev:~$</span> ${command}`;
+        bodyEl.appendChild(cmdLine);
+
+        const responseLine = document.createElement("div");
+        responseLine.className = "text-slate-300 pl-2";
+
+        switch (command) {
+          case "help":
+            responseLine.innerHTML = `
+                        Available commands:<br>
+                        - <span class="text-cyber-cyan">skills</span>: List technical skills<br>
+                        - <span class="text-cyber-cyan">projects</span>: View academic projects<br>
+                        - <span class="text-cyber-cyan">cgpa</span>: Print academic CGPA<br>
+                        - <span class="text-cyber-cyan">hackathon</span>: View hackathon achievement<br>
+                        - <span class="text-cyber-cyan">contact</span>: Show phone & email<br>
+                        - <span class="text-cyber-cyan">clear</span>: Clear terminal console
+                    `;
+            break;
+          case "skills":
+            responseLine.innerHTML = `Java, Python, HTML, CSS, React.js, MySQL, MongoDB, Graph Data Structures`;
+            break;
+          case "projects":
+            responseLine.innerHTML = `1. MindVault (React/MySQL)<br>2. Morse Code Translator (Python)<br>3. Friend Recommendation (Java Graph DSA)`;
+            break;
+          case "cgpa":
+            responseLine.innerHTML = `B.Tech CSE Grade: <span class="text-cyber-cyan font-bold">8.43 / 10</span> (DES Pune University)`;
+            break;
+          case "hackathon":
+            responseLine.innerHTML = `Award: <span class="text-amber-400 font-bold">3rd Place</span> - L&T TechXcelerate Hackathon at COEP`;
+            break;
+          case "contact":
+            responseLine.innerHTML = `Email: sumangaltengse4@gmail.com | Phone: 7058032581 | Location: Pune`;
+            break;
+          case "clear":
+            bodyEl.innerHTML = `<div>Welcome to Sumangal Tengse's CLI v1.0.0</div><div>Type <span class="text-cyber-cyan font-bold">help</span> to view available commands.</div>`;
+            inputEl.value = "";
+            return;
+          default:
+            responseLine.innerHTML = `<span class="text-red-400">Command not recognized '${command}'. Type 'help' for options.</span>`;
+        }
+
+        bodyEl.appendChild(responseLine);
+        bodyEl.scrollTop = bodyEl.scrollHeight;
+        inputEl.value = "";
+      }
+
+      function openProjectModal(type) {
+        const modal = document.getElementById("project-modal");
+        const content = document.getElementById("modal-content");
+
+        if (type === "mindvault") {
+          content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-brain text-cyber-cyan text-2xl"></i>
+                            <h3 class="text-2xl font-bold text-white font-mono">MindVault System</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            MindVault is an integrated database platform built for longitudinal mental health analysis. It combines dynamic front-end telemetry with backend MySQL tables designed with strict privacy boundaries.
+                        </p>
+                        <div class="bg-cyber-dark p-4 rounded-xl border border-white/10 font-mono text-xs space-y-2">
+                            <div class="text-cyber-cyan font-bold">// Key Technical Contributions:</div>
+                            <div class="text-slate-300">• Designed ethical schema enforcing pseudonymized user keys.</div>
+                            <div class="text-slate-300">• Created dynamic longitudinal trend charts in React.</div>
+                            <div class="text-slate-300">• Built optimized MySQL triggers for longitudinal metric aggregates.</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        modal.classList.remove("hidden");
+      }
+
+      function closeProjectModal() {
+        document.getElementById("project-modal").classList.add("hidden");
+      }
+
+      function handleContactSubmit(e) {
+        e.preventDefault();
+        showToast("Message recorded! Sumangal will respond soon.");
+        e.target.reset();
+      }
+    </script>
+  </body>
+</html>
